@@ -1,0 +1,47 @@
+roughdraft: roughdraft.o draft.o draftutils.o libroughdraft imgmanip.o imgutils.o bmpmanip.o bmpmanip24.o bmpmanip256.o pngmanip.o rdecompress.o
+	make roughdraft.a
+
+roughdraft.o: roughdraft.cpp
+	gcc -g -c -Wall roughdraft.cpp
+	
+draft.o: draft.cpp
+	gcc -g -c -Wall draft.cpp -I/usr/include/libpng12
+	
+draftutils.o: draftutils.cpp
+	gcc -g -c -Wall draftutils.cpp 
+
+imgmanip.o: imgmanip.cpp
+	gcc -g -c -Wall imgmanip.cpp -I/usr/include/libpng12
+
+imgutils.o: imgutils.cpp
+	gcc -g -c -Wall imgutils.cpp
+
+bmpmanip.o: bmpmanip.cpp
+	gcc -g -c -Wall bmpmanip.cpp
+
+bmpmanip24.o: bmpmanip24.cpp
+	gcc -g -c -Wall bmpmanip24.cpp
+
+bmpmanip256.o: bmpmanip256.cpp
+	gcc -g -c -Wall bmpmanip256.cpp
+
+pngmanip.o: pngmanip.cpp
+	gcc -g -c -Wall pngmanip.cpp -I/usr/include/libpng12
+
+rdecompress.o: rdecompress.cpp
+	gcc -g -c -Wall rdecompress.cpp
+
+libroughdraft: draftutils.o
+	g++ -shared -mno-cygwin draftutils.o -o libroughdraft.dll
+	
+roughdraft.a:
+	ar rcs libroughdraft.a *.o 
+
+install: roughdraft.a
+	cp ./libroughdraft.a /usr/local/lib
+	cp ./libroughdraft.dll /usr/local/lib
+	cp ./roughdraft.h /usr/local/include
+	cp ./roughdraftdefines.h /usr/local/include
+
+clean: 
+	rm *.o libroughdraft.a libroughdraft.dll

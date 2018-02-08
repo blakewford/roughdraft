@@ -1,0 +1,8 @@
+test: main.o
+	g++ main.o -o test -lstdc++ -lroughdraft -lz -lpng12 -lcairo -L/usr/local/lib
+
+main.o: main.c
+	gcc -c main.c
+
+clean:
+	rm *.o *.bmp *.png test

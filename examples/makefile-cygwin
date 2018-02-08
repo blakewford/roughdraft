@@ -1,0 +1,8 @@
+shapes: shapes.o
+	g++ shapes.o -o shapes -lstdc++ -lroughdraft -lz -lpng12 -lcairo -L/usr/local/lib
+
+shapes.o: shapes.c
+	gcc -c shapes.c
+
+clean:
+	rm *.o *.bmp *.png shapes
