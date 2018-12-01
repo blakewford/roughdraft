@@ -23,36 +23,24 @@
 
 ************************************************************************/
 
+#include "parser.h"
 #include "roughdraft.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+const char* JSON = "{\"name\":\"position0\",\"parameters\":{\"w\":0,\"h\":0,\"element\":\"line\",\"layer\":\"black\",\"weight\":1,\"x1\":1,\"y1\":1,\"x2\":95,\"y2\":95}}\n";
 int main(int argc, char *argv[])
 {
-	open_draft(1280, 800);
-	add_rde(rectangle, red, 1, 160, 75, 188, 85, _2D);
-	add_rde(line, blue, 1, 175, 100, 188, 85, _2D);
-	add_rde(circle, cyan, 2, 160, 100, 172, 92, _2D);
-	add_rde(arc, brown, 2, 160, 100, 172, 108, _2D);
-	add_rde(arc, brown, 2, 160, 100, 174, 100, _2D);
-	compile("./testpng.png", png);
-	close_draft();
-
-	recover_draft("./testpng.png");
-
-	size_t size = get_rde_data_size();
-	rde* elements = (rde*)malloc(sizeof(rde)*size);
-	get_rde_elements(elements, size);
-	size_t i = 0;
-	for(i; i < size; i++)
-	{
-		add_dimension(elements[i],3);
-	}
+  set_command c;
+	parse(JSON, &c);
+  printf("%s %s %s %ld\n", c.get_name(), c.get_shape(), c.get_layer(), c.get_weight());
+  
+	open_draft(96, 96);
+	add_rde(line, black, 3, 1, 1, 95, 95, _2D);
+	add_rde(circle, black, 9, 48, 48, 56, 48, _2D);
 
 	set_background_color(white);
-
-	compile("./test24.bmp", bitmap24);
-	compile("./test256.bmp", bitmap256);
-	compile("./testpng.png", png);
+	compile("./test.png", png);
 	
 	close_draft();
 

@@ -34,6 +34,6 @@
 #define HEXDIGITSIZE 4
 #define PADDING 0x00
 #define RDL_LAYERS 16
-#define MM_PER_PIXEL .2645
+#define MM_PER_PIXEL 1
 #define IN_PER_MM 0.03937
 #endif
