@@ -1,0 +1,5 @@
+{"name":"position0","parameters":{"w":96,"h":96}}
+{"name":"position0","parameters":{"element":"line",  "layer":"black","weight":3,"x1":20,"y1":54,"x2":44,"y2":35}}
+{"name":"position0","parameters":{"element":"line",  "layer":"black","weight":3,"x1":5, "y1":5, "x2":48,"y2":48}}
+{"name":"position0","parameters":{"element":"line",  "layer":"black","weight":3,"x1":24,"y1":24,"x2":48,"y2":5 }}
+{"name":"position0","parameters":{"element":"circle","layer":"black","weight":5,"x1":48,"y1":48,"x2":48,"y2":52}}

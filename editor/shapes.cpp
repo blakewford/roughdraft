@@ -23,20 +23,34 @@
 
 ************************************************************************/
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <sstream>
+#include <fstream>
+#include <string>
+
 #include "parser.h"
 #include "roughdraft.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 const char* JSON = "{\"name\":\"position0\",\"parameters\":{\"w\":96,\"h\":96,\"element\":\"line\",\"layer\":\"black\",\"weight\":1,\"x1\":1,\"y1\":1,\"x2\":95,\"y2\":95}}\n";
 
 int main(int argc, char *argv[])
 {
+
+  std::ifstream sample("sample.json");
+
   set_command c;
-	parse(JSON, &c);
-  
-	open_draft(c.get_width(), c.get_height());
-	add_rde(c.get_shape(), c.get_layer(), c.get_weight(), c.get_x1(), c.get_y1(), c.get_x2(), c.get_y2(), _2D);
+  std::string line;
+  std::getline(sample, line);
+  std::istringstream iss(line);
+  parse(line.c_str(), &c);
+  open_draft(c.get_width(), c.get_height());
+  while(std::getline(sample, line))
+  {
+      std::istringstream iss(line);
+      parse(line.c_str(), &c);
+      add_rde(c.get_shape(), c.get_layer(), c.get_weight(), c.get_x1(), c.get_y1(), c.get_x2(), c.get_y2(), _2D);
+  }
 
 	set_background_color(green);
 	compile("./test.png", png);

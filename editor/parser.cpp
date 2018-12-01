@@ -162,6 +162,11 @@ void parse(const char* json, command* c)
     std::stack<container_object*> object_stack;
     while(current != '\0')
     {
+        while(current == ' ')
+        {
+            i++;
+            current = json[i];
+        }
         if(current == '{')
         {
             switch(state)

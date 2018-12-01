@@ -34,6 +34,10 @@ class set_command: public command
             {
                 return line;
             }
+            else if(!strcmp(m_shape, "circle"))
+            {
+                return circle;
+            }
 
             return unknownShape;
         };
