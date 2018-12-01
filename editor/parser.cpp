@@ -114,9 +114,33 @@ void set_command::populate_specific(container_object* obj)
         {
             m_weight = param->get_long_value();
         }
+        else if(!strcmp(name, "w"))
+        {
+            m_w = param->get_long_value();
+        }
+        else if(!strcmp(name, "h"))
+        {
+            m_h = param->get_long_value();
+        }
+        else if(!strcmp(name, "x1"))
+        {
+            m_x1 = param->get_long_value();
+        }
+        else if(!strcmp(name, "y1"))
+        {
+            m_y1 = param->get_long_value();
+        }
+        else if(!strcmp(name, "x2"))
+        {
+            m_x2 = param->get_long_value();
+        }
+        else if(!strcmp(name, "y2"))
+        {
+            m_y2 = param->get_long_value();
+        }
         else
         {
-            param->get_long_value();
+            assert(0);
         }
     }
 }

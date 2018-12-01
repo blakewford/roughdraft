@@ -28,18 +28,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const char* JSON = "{\"name\":\"position0\",\"parameters\":{\"w\":0,\"h\":0,\"element\":\"line\",\"layer\":\"black\",\"weight\":1,\"x1\":1,\"y1\":1,\"x2\":95,\"y2\":95}}\n";
+const char* JSON = "{\"name\":\"position0\",\"parameters\":{\"w\":96,\"h\":96,\"element\":\"line\",\"layer\":\"black\",\"weight\":1,\"x1\":1,\"y1\":1,\"x2\":95,\"y2\":95}}\n";
+
 int main(int argc, char *argv[])
 {
   set_command c;
 	parse(JSON, &c);
-  printf("%s %s %s %ld\n", c.get_name(), c.get_shape(), c.get_layer(), c.get_weight());
   
-	open_draft(96, 96);
-	add_rde(line, black, 3, 1, 1, 95, 95, _2D);
-	add_rde(circle, black, 9, 48, 48, 56, 48, _2D);
+	open_draft(c.get_width(), c.get_height());
+	add_rde(c.get_shape(), c.get_layer(), c.get_weight(), c.get_x1(), c.get_y1(), c.get_x2(), c.get_y2(), _2D);
 
-	set_background_color(white);
+	set_background_color(green);
 	compile("./test.png", png);
 	
 	close_draft();

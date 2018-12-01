@@ -32,7 +32,7 @@ typedef enum _rds{
 	circle       =  2,
 	swatch       =  3,
 	dimension    =  4,
-	arc			 =  5,
+	arc          =  5,
 	unknownShape = ~0
 }rds;
 

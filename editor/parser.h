@@ -1,4 +1,5 @@
 #include <string.h>
+#include "roughdraft.h"
 
 class container_object;
 
@@ -26,15 +27,45 @@ class set_command: public command
             memset(m_layer, '\0', MAX_BUFFER_SIZE);
         }
         void populate_specific(container_object* obj);
-        const char* get_shape(){ return m_shape; };
-        const char* get_layer(){ return m_layer; };
+
+        rds get_shape()
+        {
+            if(!strcmp(m_shape, "line"))
+            {
+                return line;
+            }
+
+            return unknownShape;
+        };
+
+        rdl get_layer()
+        {
+            if(!strcmp(m_layer, "black"))
+            {
+                return black;
+            }
+
+            return unknownLayer;
+        };
+
         long get_weight(){ return m_weight; };
+        long get_width(){ return m_w; };
+        long get_height(){ return m_h; };
+        long get_x1(){ return m_x1; };
+        long get_y1(){ return m_y1; };
+        long get_x2(){ return m_x2; };
+        long get_y2(){ return m_y2; };
 
     private:
         char m_shape[MAX_BUFFER_SIZE];
         char m_layer[MAX_BUFFER_SIZE];
-        bool m_weight;
-
+        long m_weight;
+        long m_w;
+        long m_h;
+        long m_x1;
+        long m_y1;
+        long m_x2;
+        long m_y2;
 };
 
 void parse(const char* json, command* c);
